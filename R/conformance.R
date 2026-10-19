@@ -61,7 +61,7 @@ with_fixed_seed <- function(seed, expr) {
   expr
 }
 
-#' Verify an architecture against the zukzeit contract
+#' Verify an architecture against the zutsfm contract
 #'
 #' Runs the invariants in `?`[zuk-architecture-contract] against an
 #' architecture constructor and reports which hold. Use it while implementing a
@@ -172,7 +172,7 @@ zuk_check_architecture <- function(constructor,
     if (is.null(v)) {
       "No contract_version on the model handle; construct it with new_zuk_model()."
     } else if (package_version(v)$major != zuk_contract_version()$major) {
-      sprintf("Architecture targets contract %s; this zukzeit implements %s.",
+      sprintf("Architecture targets contract %s; this zutsfm implements %s.",
               format(v), format(zuk_contract_version()))
     } else {
       NULL
@@ -356,7 +356,7 @@ finish_check <- function(checks, error) {
 
   if (nrow(failed) == 0L) {
     cli::cli_alert_success(
-      "Architecture satisfies the zukzeit contract ({sum(report$ok, na.rm = TRUE)} check{?s} passed)."
+      "Architecture satisfies the zutsfm contract ({sum(report$ok, na.rm = TRUE)} check{?s} passed)."
     )
     return(invisible(report))
   }
@@ -366,7 +366,7 @@ finish_check <- function(checks, error) {
     rep("x", nrow(failed))
   )
   msg <- c(
-    "Architecture violates the zukzeit contract ({nrow(failed)} of {nrow(report)} check{?s} failed).",
+    "Architecture violates the zutsfm contract ({nrow(failed)} of {nrow(report)} check{?s} failed).",
     bullets,
     "i" = "See {.code ?`zuk-architecture-contract`}."
   )

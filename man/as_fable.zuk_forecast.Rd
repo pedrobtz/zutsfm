@@ -2,7 +2,7 @@
 % Please edit documentation in R/forecast.R
 \name{as_fable.zuk_forecast}
 \alias{as_fable.zuk_forecast}
-\title{Convert a zukzeit forecast to a fable}
+\title{Convert a zutsfm forecast to a fable}
 \usage{
 as_fable.zuk_forecast(x, ...)
 }
@@ -21,8 +21,8 @@ A method for \code{\link[fabletools:as_fable]{fabletools::as_fable()}}, so a \co
 \details{
 fabletools is an optional adapter dependency, so this method is registered
 lazily from \code{.onLoad()} via \code{\link[vctrs:s3_register]{vctrs::s3_register()}} — it becomes available as
-soon as fabletools is loaded, and its absence never blocks loading zukzeit.
-Call it as \code{fabletools::as_fable(x)}; zukzeit deliberately does not define a
+soon as fabletools is loaded, and its absence never blocks loading zutsfm.
+Call it as \code{fabletools::as_fable(x)}; zutsfm deliberately does not define a
 competing \code{as_fable()} generic.
 }
 \examples{
@@ -35,7 +35,7 @@ history <- tsibble::tsibble(
   index = month
 )
 
-# Call it qualified: zukzeit registers a method rather than a rival generic.
+# Call it qualified: zutsfm registers a method rather than a rival generic.
 fabletools::as_fable(forecast(model, history, h = 3))
 
 zuk_unload("stub")

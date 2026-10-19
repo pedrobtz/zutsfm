@@ -1,4 +1,4 @@
-# parsnip engine `zuk_reg` / engine "zukzeit".
+# parsnip engine `zuk_reg` / engine "zutsfm".
 #
 # A parsnip spec makes a supported model usable inside a workflow() by passing
 # its checkpoint identity as an engine argument. The spec's sole tunable main
@@ -13,10 +13,10 @@
 #' A parsnip specification for time-series foundation models
 #'
 #' @param mode Only `"regression"` is supported.
-#' @param engine The engine (only `"zukzeit"`).
+#' @param engine The engine (only `"zutsfm"`).
 #' @param context_length Optional context length (tunable).
 #' @details
-#' Model-specific settings are supplied through `set_engine("zukzeit", ...)`:
+#' Model-specific settings are supplied through `set_engine("zutsfm", ...)`:
 #' `model_id` (required; use `"stub"` for the executable test fixture),
 #' `revision`, `index`
 #' (time column), `id` (series column), and `quantile_levels`.
@@ -39,12 +39,12 @@
 #'
 #' @examplesIf requireNamespace("parsnip", quietly = TRUE)
 #' spec <- zuk_reg(context_length = 512) |>
-#'   parsnip::set_engine("zukzeit", model_id = "stub",
+#'   parsnip::set_engine("zutsfm", model_id = "stub",
 #'                       index = "day", id = "store")
 #' spec
 #' @return A parsnip `model_spec`.
 #' @export
-zuk_reg <- function(mode = "regression", engine = "zukzeit",
+zuk_reg <- function(mode = "regression", engine = "zutsfm",
                      context_length = NULL) {
   zuk_require_namespace(
     "parsnip",
@@ -61,7 +61,7 @@ zuk_reg <- function(mode = "regression", engine = "zukzeit",
   )
 }
 
-#' Update a zukzeit model specification
+#' Update a zutsfm model specification
 #'
 #' The [stats::update()] method every `parsnip` specification is expected to
 #' provide. `tune` reaches it through `tune::finalize_workflow()` when it
@@ -153,28 +153,28 @@ make_zuk_reg <- function() {
   }
   parsnip::set_new_model("zuk_reg")
   parsnip::set_model_mode("zuk_reg", "regression")
-  parsnip::set_model_engine("zuk_reg", "regression", "zukzeit")
-  parsnip::set_dependency("zuk_reg", "zukzeit", "zukzeit")
+  parsnip::set_model_engine("zuk_reg", "regression", "zutsfm")
+  parsnip::set_dependency("zuk_reg", "zutsfm", "zutsfm")
 
   parsnip::set_model_arg(
-    model = "zuk_reg", eng = "zukzeit",
+    model = "zuk_reg", eng = "zutsfm",
     parsnip = "context_length", original = "context_length",
-    func = list(pkg = "zukzeit", fun = "context_length"),
+    func = list(pkg = "zutsfm", fun = "context_length"),
     has_submodel = FALSE
   )
 
   parsnip::set_fit(
-    model = "zuk_reg", eng = "zukzeit", mode = "regression",
+    model = "zuk_reg", eng = "zutsfm", mode = "regression",
     value = list(
       interface = "formula",
       protect   = c("formula", "data"),
-      func      = c(pkg = "zukzeit", fun = "zuk_parsnip_fit"),
+      func      = c(pkg = "zutsfm", fun = "zuk_parsnip_fit"),
       defaults  = list()
     )
   )
 
   parsnip::set_encoding(
-    model = "zuk_reg", eng = "zukzeit", mode = "regression",
+    model = "zuk_reg", eng = "zutsfm", mode = "regression",
     options = list(
       predictor_indicators = "none",
       compute_intercept    = FALSE,
@@ -184,7 +184,7 @@ make_zuk_reg <- function() {
   )
 
   parsnip::set_pred(
-    model = "zuk_reg", eng = "zukzeit", mode = "regression", type = "numeric",
+    model = "zuk_reg", eng = "zutsfm", mode = "regression", type = "numeric",
     value = list(
       pre  = NULL,
       post = function(results, object) {
@@ -214,7 +214,7 @@ make_zuk_reg <- function() {
 tunable_zuk_reg <- function(x, ...) {
   data.frame(
     name         = "context_length",
-    call_info    = I(list(list(pkg = "zukzeit", fun = "context_length"))),
+    call_info    = I(list(list(pkg = "zutsfm", fun = "context_length"))),
     source       = "model_spec",
     component    = "zuk_reg",
     component_id = "main",

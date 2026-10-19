@@ -1,6 +1,6 @@
-# `zukzeit` engine plan
+# `zutsfm` engine plan
 
-`zukzeit` provides a native R engine for loading and running open time-series
+`zutsfm` provides a native R engine for loading and running open time-series
 foundation models. This document fixes the package architecture and public
 contract. [`roadmap.md`](./roadmap.md) owns release order and gates;
 [`consumer-api.md`](./consumer-api.md) specifies the surface downstream
@@ -12,13 +12,13 @@ packages rely on.
 
 ## Mission
 
-Given a supported checkpoint and numeric history, `zukzeit` downloads immutable
+Given a supported checkpoint and numeric history, `zutsfm` downloads immutable
 weights, constructs a native R `torch` module, and returns trustworthy point
 and quantile forecasts through a stable, framework-neutral interface.
 
 The package fills the model-runtime gap in R. Existing packages already provide
 temporal data structures, resampling, metrics, reconciliation, and deployment;
-`zukzeit` should integrate with them instead of reproducing them.
+`zutsfm` should integrate with them instead of reproducing them.
 
 The first release proves a small, complementary portfolio: TimesFM 2.5 as the
 general quantile baseline, Toto 2.0 4M as the efficient model, and Chronos-2 as
@@ -70,7 +70,7 @@ constructor mapping used after a curated entry resolves; it does not add model
 IDs or support claims. This keeps `tsai` discovery stable across installed and
 loaded packages.
 
-`hfhub` owns downloaded files. `zukzeit` owns a bounded in-process LRU of
+`hfhub` owns downloaded files. `zutsfm` owns a bounded in-process LRU of
 constructed handles, configured by `options(zuk.max_loaded_models = 1L)`.
 Disk presence and resident state are reported separately.
 
@@ -157,7 +157,7 @@ consumer and a design stress test. It must be able to:
 5. reuse an already-constructed model across resamples and fable keys; and
 6. compose `TSFM()` with statistical models in a fable workflow.
 
-`zukzeit` does not select a model or implement fallback policy. It exposes the
+`zutsfm` does not select a model or implement fallback policy. It exposes the
 metadata and typed outcomes required for `tsai` to make those decisions. It
 contains no prompts, LLM tools, agent logic, or dependency on `tsai`.
 

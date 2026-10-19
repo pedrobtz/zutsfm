@@ -11,7 +11,7 @@ A \link{package_version}.
 }
 \description{
 The version of the contract described in \verb{?}\link{zuk-architecture-contract} that
-this installation of zukzeit implements. Stamped onto every \code{\link[=new_zuk_model]{new_zuk_model()}}.
+this installation of zutsfm implements. Stamped onto every \code{\link[=new_zuk_model]{new_zuk_model()}}.
 }
 \examples{
 zuk_contract_version()

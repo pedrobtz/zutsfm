@@ -1,5 +1,5 @@
 # Portions derived from Chronos-2, Copyright Amazon.com, Inc. or its affiliates.
-# Translated and modified for R/torch by the zukzeit authors.
+# Translated and modified for R/torch by the zutsfm authors.
 # Licensed under Apache-2.0; see inst/COPYRIGHTS and
 # inst/LICENSES/Apache-2.0.txt.
 

@@ -68,7 +68,7 @@ median(fc$value)   # the engine's point forecast
 \examples{
 \dontshow{if (requireNamespace("fabletools", quietly = TRUE) && requireNamespace("tsibble", quietly = TRUE)) withAutoprint(\{ # examplesIf}
 history <- tsibble::tsibble(time = 1:12, value = cumsum(1:12), index = time)
-fits <- fabletools::model(history, zukzeit = TSFM(value, model_id = "stub"))
+fits <- fabletools::model(history, zutsfm = TSFM(value, model_id = "stub"))
 fabletools::forecast(fits, h = 3)
 zuk_unload("stub")
 \dontshow{\}) # examplesIf}

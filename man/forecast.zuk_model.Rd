@@ -55,7 +55,7 @@ A \code{zuk_forecast}.
 \description{
 The convenience surface: hand a panel of history and a horizon, get a
 \code{zuk_forecast} back. This is a method for \code{\link[generics:forecast]{generics::forecast()}}, the same
-generic fabletools and modeltime dispatch on, so attaching zukzeit alongside
+generic fabletools and modeltime dispatch on, so attaching zutsfm alongside
 them never masks the verb.
 }
 \examples{

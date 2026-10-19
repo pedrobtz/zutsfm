@@ -116,18 +116,18 @@ test_that("the median is resolved in the checkpoint's own spelling", {
   caps <- new_zuk_capabilities("demo", max_context = 64L,
                                 quantile_levels = trained)
 
-  resolved <- zukzeit:::resolve_median_level(caps, c(0.1, 0.9))
+  resolved <- zutsfm:::resolve_median_level(caps, c(0.1, 0.9))
   expect_identical(resolved, trained[[3]])
 
   # A checkpoint with no trained median falls back to the requested level
   # nearest it, rather than failing an otherwise supported request.
   tailed <- new_zuk_capabilities("demo", max_context = 64L,
                                   quantile_levels = c(0.05, 0.4, 0.95))
-  expect_identical(zukzeit:::resolve_median_level(tailed, c(0.05, 0.4)), 0.4)
+  expect_identical(zutsfm:::resolve_median_level(tailed, c(0.05, 0.4)), 0.4)
 
   # An architecture that accepts arbitrary levels takes the exact median.
   free <- new_zuk_capabilities("demo", max_context = 64L)
-  expect_identical(zukzeit:::resolve_median_level(free, c(0.1, 0.9)), 0.5)
+  expect_identical(zutsfm:::resolve_median_level(free, c(0.1, 0.9)), 0.5)
 })
 
 test_that("a checkpoint without a trained median still forecasts", {

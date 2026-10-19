@@ -1,4 +1,4 @@
-#' Structured zukzeit conditions
+#' Structured zutsfm conditions
 #'
 #' Public engine failures inherit from `zuk_error`, one policy class, and one
 #' leaf class. Consumers should branch on those classes and structured fields,

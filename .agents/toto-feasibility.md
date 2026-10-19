@@ -181,7 +181,7 @@ and the two gates.
 
 ## Pinned inference knobs
 
-Per the decision recorded below, `zukzeit` implements
+Per the decision recorded below, `zutsfm` implements
 `decode_block_size = 0`, `scaler_fallback_min_obs = 0`,
 `quantile_real_cap_k = 0` — the raw `Toto2Model.forecast()` defaults.
 
@@ -250,7 +250,7 @@ card demonstrates:
 | `scaler_fallback_min_obs` | `0` (no-op) | `8` | Backfills loc/scale on short leading patches |
 | `quantile_real_cap_k` | `0` (disabled) | `1e4` | Clips each real-space quantile to `[ctx_min - K*scale, ctx_max + K*scale]` |
 
-`zukzeit` must pin one combination, implement exactly that, and record it in
+`zutsfm` must pin one combination, implement exactly that, and record it in
 the catalogue entry and the fixture generator. Fixtures generated under
 different knobs are not comparable, and a user checking our output against the
 upstream example would otherwise see an unexplained difference.

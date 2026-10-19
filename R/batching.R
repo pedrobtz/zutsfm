@@ -81,7 +81,7 @@ validate_available_device <- function(device) {
   device
 }
 
-#' Set or get the default zukzeit compute device
+#' Set or get the default zutsfm compute device
 #'
 #' Thin wrapper over the `zuk.device` option consulted by
 #' [zuk_resolve_device()].
