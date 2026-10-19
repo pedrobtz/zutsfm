@@ -5,7 +5,7 @@
 # safetensors -> nn_module state-dict mapping land once golden parity fixtures
 # are generated. That generation requires resources unavailable in a sandboxed
 # CI-only setting (the real ibm-granite/granite-timeseries-ttm-r2 checkpoint
-# from the Hub, R torch with a libtorch backend, and the reference `granite-zukzeit`
+# from the Hub, R torch with a libtorch backend, and the reference `granite-zutsfm`
 # Python implementation to produce expected outputs). Until then the forward
 # pass errors with a clear pointer rather than returning unverified numbers.
 #
@@ -16,7 +16,7 @@
 # ---- Weight-map contract ----------------------------------------------------
 #
 # The loader maps safetensors tensor names from the checkpoint to R torch module
-# parameters. TTM's published structure (granite-zukzeit `TinyTimeMixerForPrediction`)
+# parameters. TTM's published structure (granite-zutsfm `TinyTimeMixerForPrediction`)
 # is, at a high level:
 #
 #   backbone.encoder.patcher            patch embedding (Linear over patch_length)
@@ -86,7 +86,7 @@ ttm_constructor <- function(config, weights = NULL) {
       "The native TTM forward pass is not implemented.",
       "i" = "Numerical parity against {.val ibm-granite/granite-timeseries-ttm-r2} \\
              requires golden fixtures generated with the Hub checkpoint, torch, \\
-             and reference {.pkg granite-zukzeit}.",
+             and reference {.pkg granite-zutsfm}.",
       "i" = "TTM is deferred until the engine can represent point-only output.",
       "i" = "Use {.code zuk_pretrained(\"stub\")} to exercise the engine shell."
     ),

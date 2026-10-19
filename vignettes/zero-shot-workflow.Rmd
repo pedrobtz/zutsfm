@@ -34,7 +34,7 @@ For the same workflow driven by a real checkpoint, see
 local and deterministic:
 
 ```{r}
-library(zukzeit)
+library(zutsfm)
 
 model <- zuk_pretrained("stub")
 ```
@@ -107,8 +107,8 @@ straight back onto the data it came from.
 
 ## Path 2 — the tidyverts
 
-`zukzeit` registers a method on `fabletools::as_fable()` rather than exporting a
-generic of its own, so the verb keeps working when fabletools and `zukzeit` are
+`zutsfm` registers a method on `fabletools::as_fable()` rather than exporting a
+generic of its own, so the verb keeps working when fabletools and `zutsfm` are
 both attached. Call it qualified, or `library(fabletools)` first.
 
 ```{r, eval = has_tidyverts}
@@ -130,7 +130,7 @@ fabletools::as_fable(forecast(model, history_tsbl, h = 12)) |>
 next to any other model definition, one key at a time.
 
 ```{r, eval = has_tidyverts}
-fits <- fabletools::model(history_tsbl, zukzeit = TSFM(sales, model_id = "stub"))
+fits <- fabletools::model(history_tsbl, zutsfm = TSFM(sales, model_id = "stub"))
 fits
 
 fabletools::forecast(fits, h = 3)
@@ -146,7 +146,7 @@ library(parsnip)
 library(workflows)
 
 spec <- zuk_reg(context_length = 512L) |>
-  set_engine("zukzeit",
+  set_engine("zutsfm",
              model_id = "stub",
              index    = "month",
              id       = "store")
@@ -177,7 +177,7 @@ tuned <- tune_grid(
   workflow() |>
     add_variables(outcomes = sales, predictors = c(month, store)) |>
     add_model(zuk_reg(context_length = tune()) |>
-                set_engine("zukzeit", model_id = "stub",
+                set_engine("zutsfm", model_id = "stub",
                            index = "month", id = "store")),
   resamples = sliding_period(history[history$store == "north", ],
                              index = month, period = "year",

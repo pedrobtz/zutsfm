@@ -2,9 +2,9 @@
 % Please edit documentation in R/contract.R
 \name{zuk-architecture-contract}
 \alias{zuk-architecture-contract}
-\title{The zukzeit architecture contract}
+\title{The zutsfm architecture contract}
 \description{
-\code{zukzeit} is an inference engine: it owns the path from a pretrained checkpoint
+\code{zutsfm} is an inference engine: it owns the path from a pretrained checkpoint
 to predictive quantiles, and nothing above it. An \emph{architecture} is a
 constructor and forward pass satisfying the contract described here.
 }
@@ -13,7 +13,7 @@ constructor and forward pass satisfying the contract described here.
 the current R session. Registration does not add checkpoint metadata to the
 package-owned catalogue and does not make arbitrary model IDs available to
 \code{\link[=zuk_pretrained]{zuk_pretrained()}} or model-ID-based adapters. A checkpoint is exposed by
-those APIs only after it is curated in \code{zukzeit}, including an immutable
+those APIs only after it is curated in \code{zutsfm}, including an immutable
 revision, manifest, licence metadata, contract conformance, and numerical
 parity. Independently constructed \code{\link[=new_zuk_model]{new_zuk_model()}} handles can still use
 the framework-neutral \code{\link[=forecast]{forecast()}} path.

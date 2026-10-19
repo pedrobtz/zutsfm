@@ -4,12 +4,12 @@
 \alias{zuk_reg}
 \title{A parsnip specification for time-series foundation models}
 \usage{
-zuk_reg(mode = "regression", engine = "zukzeit", context_length = NULL)
+zuk_reg(mode = "regression", engine = "zutsfm", context_length = NULL)
 }
 \arguments{
 \item{mode}{Only \code{"regression"} is supported.}
 
-\item{engine}{The engine (only \code{"zukzeit"}).}
+\item{engine}{The engine (only \code{"zutsfm"}).}
 
 \item{context_length}{Optional context length (tunable).}
 }
@@ -20,7 +20,7 @@ A parsnip \code{model_spec}.
 A parsnip specification for time-series foundation models
 }
 \details{
-Model-specific settings are supplied through \code{set_engine("zukzeit", ...)}:
+Model-specific settings are supplied through \code{set_engine("zutsfm", ...)}:
 \code{model_id} (required; use \code{"stub"} for the executable test fixture),
 \code{revision}, \code{index}
 (time column), \code{id} (series column), and \code{quantile_levels}.
@@ -43,7 +43,7 @@ A formula listing every needed column (\code{sales ~ month + store}) works too.
 \examples{
 \dontshow{if (requireNamespace("parsnip", quietly = TRUE)) withAutoprint(\{ # examplesIf}
 spec <- zuk_reg(context_length = 512) |>
-  parsnip::set_engine("zukzeit", model_id = "stub",
+  parsnip::set_engine("zutsfm", model_id = "stub",
                       index = "day", id = "store")
 spec
 \dontshow{\}) # examplesIf}

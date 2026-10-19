@@ -1,9 +1,9 @@
-The zukzeit package contains original work and a modified derivative of TimesFM.
+The zutsfm package contains original work and a modified derivative of TimesFM.
 
-Original zukzeit work
+Original zutsfm work
 ------------------
 
-Copyright 2026 zukzeit authors.
+Copyright 2026 zutsfm authors.
 Licensed under the MIT licence recorded in the package's top-level LICENSE.
 
 Modified TimesFM derivative
@@ -34,7 +34,7 @@ The numerical reference files under tests/testthat/fixtures/timesfm/ were
 generated from the pinned official TimesFM implementation and checkpoint. They
 are distributed as upstream-derived test material under the same Apache-2.0
 terms. The fixture generator, input definitions, and R test harness are
-original zukzeit work.
+original zutsfm work.
 
 Checkpoint weights
 ------------------

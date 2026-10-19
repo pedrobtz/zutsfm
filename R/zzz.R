@@ -14,11 +14,11 @@ utils::globalVariables(c("object", "new_data", "self"))
   # Adapter methods are registered against generics owned by optional packages.
   # s3_register() installs a load hook, so the method lights up if and when the
   # adapter package is loaded, and costs nothing when it never is. This is what
-  # lets zukzeit interoperate with fabletools without importing it — and without
+  # lets zutsfm interoperate with fabletools without importing it — and without
   # defining a competing `as_fable()` generic.
   vctrs::s3_register("fabletools::as_fable", "zuk_forecast")
   # `model_sum()` is fabletools' own generic, so it can only be registered
-  # lazily. `forecast()` needs no hook: it comes from generics, which zukzeit
+  # lazily. `forecast()` needs no hook: it comes from generics, which zutsfm
   # imports and re-exports, and fabletools dispatches on that same generic.
   vctrs::s3_register("fabletools::model_sum", "model_tsfm")
 
@@ -30,7 +30,7 @@ utils::globalVariables(c("object", "new_data", "self"))
       make_zuk_reg(),
       error = function(e) {
         cli::cli_warn(c(
-          "Could not register the {.val zukzeit} parsnip engine.",
+          "Could not register the {.val zutsfm} parsnip engine.",
           "i" = "The engine will be unavailable; everything else still works.",
           "x" = conditionMessage(e)
         ))

@@ -1,4 +1,4 @@
-# `zukzeit` implementation review — Stages 0–3
+# `zutsfm` implementation review — Stages 0–3
 
 *Reviewed 2026-08-13 against the working tree at commit `1200b0e` plus the
 uncommitted Stage 3 delta. **All findings below were fixed the same day**; see
@@ -98,7 +98,7 @@ which `validate_quantile_matrix()` catches
 ([R/batching.R:193-203](R/batching.R#L193-L203)) and reports as
 `zuk_error_contract` — a `zuk_error_internal`
 ([R/conditions.R:169-189](R/conditions.R#L169-L189)), i.e. "this is a bug in
-zukzeit, file a report". So a valid request, built from the package's own
+zutsfm, file a report". So a valid request, built from the package's own
 discovery API, fails as an internal engine bug.
 
 This is squarely on the documented consumer path: `consumer-api.md` R1 lists
