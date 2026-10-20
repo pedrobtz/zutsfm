@@ -1,13 +1,13 @@
-# zukzeit
+# zutsfm
 
 <!-- badges: start -->
-[![R-CMD-check](https://github.com/pedrobtz/zukzeit/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/pedrobtz/zukzeit/actions/workflows/R-CMD-check.yaml)
+[![R-CMD-check](https://github.com/pedrobtz/zutsfm/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/pedrobtz/zutsfm/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 **An inference engine for time-series foundation models, natively in R.**
 
 The target is simple: given a supported pretrained checkpoint and a numeric
-context, `zukzeit` produces predictive quantiles.
+context, `zutsfm` produces predictive quantiles.
 
 R already has every layer a foundation-model forecasting stack needs — Hub
 access (`hfhub`), checkpoint format (`safetensors`), tensor runtime (`torch`),
@@ -15,7 +15,7 @@ temporal structures (`tsibble`), forecast distributions (`distributional`),
 backtesting (`rsample`), reconciliation and metrics (`fabletools`), and conformal
 calibration (`conformalForecast`). What it lacks is the **model layer**: a
 catalogue of natively implemented time-series foundation models (TSFMs) behind
-one capability-aware interface. `zukzeit` provides that layer:
+one capability-aware interface. `zutsfm` provides that layer:
 
 - **One loader.** `zuk_pretrained("...")` resolves a supported model into a
   uniform handle. TimesFM 2.5 is the first supported native architecture; the
@@ -57,19 +57,19 @@ from the distribution, so a `TSFM()` fable reports the distribution's mean while
 the other routes report the engine's exact median — `median()` recovers the
 point forecast on any route. See `vignette("timesfm-zero-shot")`.
 
-`zukzeit` deliberately does **not** define competing `forecast()` or `as_fable()`
+`zutsfm` deliberately does **not** define competing `forecast()` or `as_fable()`
 generics: it re-exports `generics::forecast` and registers its `as_fable` method
-onto `fabletools`, so attaching `zukzeit` alongside them never masks the verbs.
+onto `fabletools`, so attaching `zutsfm` alongside them never masks the verbs.
 
 ## Installation
 
 ```r
 # After the CRAN release:
-install.packages("zukzeit")
+install.packages("zutsfm")
 
 # Development version:
 # install.packages("pak")
-pak::pak("pedrobtz/zukzeit")
+pak::pak("pedrobtz/zutsfm")
 ```
 
 The pinned TimesFM checkpoint is about 925 MB. It is downloaded once through
@@ -79,7 +79,7 @@ handle cache. Use `zuk_download()` to prefetch it explicitly.
 ## Quick start
 
 ```r
-library(zukzeit)
+library(zutsfm)
 
 history <- data.frame(
   time = 1:24,
@@ -99,7 +99,7 @@ fc |> fabletools::as_fable()
 
 # Or compose the model inside a mable, next to any other tidyverts model.
 history_ts <- tsibble::as_tsibble(history, index = time)
-fits <- fabletools::model(history_ts, zukzeit = TSFM(value, model_id = "stub"))
+fits <- fabletools::model(history_ts, zutsfm = TSFM(value, model_id = "stub"))
 fabletools::forecast(fits, h = 6)
 ```
 
@@ -130,7 +130,7 @@ my_arch <- function(config, weights) {
 zuk_check_architecture(my_arch)          # contract conformance gate
 ```
 
-The checkpoint catalogue is owned and curated by `zukzeit`. Registering a
+The checkpoint catalogue is owned and curated by `zutsfm`. Registering a
 constructor with `zuk_register_arch()` changes only the current session's
 architecture mapping; it does not add a row to `zuk_models()` or make an
 arbitrary model ID loadable through `zuk_pretrained()`, `TSFM()`, or parsnip.
@@ -164,7 +164,7 @@ representatives. Planned models do not appear in `zuk_models()` until their
 metadata and executable support gates are complete.
 
 `zuk_models()` is package-owned: `supported` means the checkpoint has passed
-`zukzeit`'s release gates, not that another package registered a constructor in the
+`zutsfm`'s release gates, not that another package registered a constructor in the
 current session.
 
 #### Horizon and effective context
@@ -193,7 +193,7 @@ moving `main` branch for curated support metadata.
 `cached` means every file in the checkpoint's static manifest is already in
 the cache managed by `hfhub`. Probes always set `local_files_only = TRUE`.
 `hfhub` uses `HUGGINGFACE_HUB_CACHE` when set and otherwise defaults to
-`~/.cache/huggingface/hub`; `zukzeit` does not create a second disk cache. A known
+`~/.cache/huggingface/hub`; `zutsfm` does not create a second disk cache. A known
 incomplete manifest is `FALSE`, while `NA` means the catalogue entry has no
 manifest definition yet.
 
@@ -201,10 +201,10 @@ manifest definition yet.
 pinned TimesFM `model.safetensors` is 925,181,104 bytes (about 925 MB, or 882
 MiB), excluding small metadata files and live tensor/runtime overhead. The
 catalogue's `license` column is the upstream **weight** licence—Apache-2.0 for
-the current curated records. The original `zukzeit` code is MIT licensed; the
+the current curated records. The original `zutsfm` code is MIT licensed; the
 native TimesFM files identified in `inst/COPYRIGHTS` are modified derivative
 works under Apache-2.0 and retain Google LLC's copyright notice. The complete
-Apache licence is installed with the package. `zukzeit` reports upstream weight
+Apache licence is installed with the package. `zutsfm` reports upstream weight
 terms and never accepts gated-repository terms on a user's behalf.
 
 ### Download and constructed-handle lifecycle
@@ -252,14 +252,14 @@ cached handle or deleting downloaded files.
 
 ## Scope
 
-`zukzeit` owns the model layer and thin adapters only. Backtesting, metrics,
+`zutsfm` owns the model layer and thin adapters only. Backtesting, metrics,
 reconciliation, conformal calibration, tuning, and feature engineering are
 delegated to the existing R stack.
 
 Explicitly **out of scope**: hosted-API models (`nixtlar` covers TimeGPT),
-training from scratch, and distributed execution. `zukzeit` runs open weights
+training from scratch, and distributed execution. `zutsfm` runs open weights
 locally; anything served over a network belongs to its own client.
 
-See the [release roadmap](https://github.com/pedrobtz/zukzeit/blob/main/.agents/roadmap.md)
-and [implementation plan](https://github.com/pedrobtz/zukzeit/blob/main/.agents/plan.md)
+See the [release roadmap](https://github.com/pedrobtz/zutsfm/blob/main/.agents/roadmap.md)
+and [implementation plan](https://github.com/pedrobtz/zutsfm/blob/main/.agents/plan.md)
 for the staged plan and full gap analysis.

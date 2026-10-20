@@ -1,3 +1,3 @@
-# zukzeit 0.1.0
+# zutsfm 0.1.0
 
 * Initial version.

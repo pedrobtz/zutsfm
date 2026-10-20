@@ -1,6 +1,6 @@
-# `zukzeit` roadmap
+# `zutsfm` roadmap
 
-`zukzeit` is an inference engine for running open time-series foundation models
+`zutsfm` is an inference engine for running open time-series foundation models
 natively in R.
 
 **North star:** given a supported pretrained checkpoint and numeric history,
@@ -100,7 +100,7 @@ fabletools::forecast(fits, h = 12)
 # tidymodels
 spec <- zuk_reg() |>
   parsnip::set_engine(
-    "zukzeit",
+    "zutsfm",
     model_id = "google/timesfm-2.5-200m-pytorch",
     revision = "<pinned-commit-sha>",
     index = "date"
@@ -193,7 +193,7 @@ to represent point-only output rather than claiming native quantiles.
 Brulee remains useful as prior art and as an independent source of Chronos-2
 reference behaviour. It is not the implementation foundation for this package:
 
-- `0.1.0` must prove native model ownership inside `zukzeit`;
+- `0.1.0` must prove native model ownership inside `zutsfm`;
 - an adapter over another high-level R interface obscures the engine boundary;
 - the removed wrapper was unverified and had correctness and lifecycle defects;
 - using it would expand the release surface without validating the native
@@ -234,7 +234,7 @@ The surface in [`consumer-api.md`](./consumer-api.md) is required for `0.1.0`.
 be able to enumerate supported checkpoints offline, prefetch weights, reuse a
 constructed handle, branch on classed failures, and use `TSFM()` inside
 fabletools. Selection, fallback policy, backtesting, and LLM orchestration stay
-outside `zukzeit`.
+outside `zutsfm`.
 
 ---
 
@@ -248,7 +248,7 @@ plausibly be maintained as a native R implementation.
 Priority meanings:
 
 - **P0 — release commitment:** a model on the current release critical path;
-- **P1 — core target:** an important, permissively licensed family that `zukzeit`
+- **P1 — core target:** an important, permissively licensed family that `zutsfm`
   intends to support;
 - **P2 — conditional target:** valuable, but blocked by a contract extension,
   unusual runtime requirements, or restrictive weight terms.
@@ -272,7 +272,7 @@ Implementation order follows contract and porting dependencies:
 4. **Granite PatchTST-FM** follows with reconstruction and imputation semantics.
 5. **Sundial** follows with a sample-path output contract.
 
-Within a family, `zukzeit` supports architecture-compatible checkpoints through
+Within a family, `zutsfm` supports architecture-compatible checkpoints through
 one implementation; it does not create bespoke code for every size or branch.
 One small canonical checkpoint supplies CI fixtures, while larger compatible
 variants are smoke-tested outside the normal check path.
@@ -290,7 +290,7 @@ variants are smoke-tested outside the normal check path.
 - Older generations when a compatible current generation supersedes them,
   unless users demonstrate a reproducible accuracy or deployment reason.
 - Fine-tuned community checkpoints: the registry may load compatible variants,
-  but `zukzeit` only certifies upstream base checkpoints.
+  but `zutsfm` only certifies upstream base checkpoints.
 - Models without immutable downloadable weights, reproducible reference code,
   or sufficiently clear usage terms.
 

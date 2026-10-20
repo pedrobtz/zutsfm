@@ -159,7 +159,7 @@ jobs:
           ZUK_RUN_CHECKPOINT_TEST: 'toto2'
         run: |
           # the test fetches the checkpoint through hfhub itself;
-          # zuk_download()'s size check fails on Windows (a zukzeit issue)
+          # zuk_download()'s size check fails on Windows (a zutsfm issue)
           pkgload::load_all(".")
           testthat::test_file("tests/testthat/test-parity-toto.R", stop_on_failure = TRUE)
         shell: Rscript {0}

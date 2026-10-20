@@ -2,7 +2,7 @@
 % Please edit documentation in R/conformance.R
 \name{zuk_check_architecture}
 \alias{zuk_check_architecture}
-\title{Verify an architecture against the zukzeit contract}
+\title{Verify an architecture against the zutsfm contract}
 \usage{
 zuk_check_architecture(
   constructor,

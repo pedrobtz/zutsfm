@@ -35,7 +35,7 @@ with_cache_test_loader <- function(code) {
     )
   }
   zuk_register_arch("cache-test", constructor, overwrite = TRUE)
-  on.exit(rm("cache-test", envir = zukzeit:::.zuk_registry), add = TRUE)
+  on.exit(rm("cache-test", envir = zutsfm:::.zuk_registry), add = TRUE)
   on.exit(zuk_unload(), add = TRUE)
   zuk_unload()
 
@@ -170,7 +170,7 @@ test_that("explicit prefetch downloads the manifest without construction", {
   paths <- zuk_download("fixture/a", progress = FALSE)
   expect_setequal(names(paths), record$manifest)
   expect_setequal(calls, record$manifest)
-  expect_identical(ls(envir = zukzeit:::.zuk_handle_cache), character())
+  expect_identical(ls(envir = zutsfm:::.zuk_handle_cache), character())
 })
 
 test_that("safetensors readers close their file connections deterministically", {
@@ -183,8 +183,8 @@ test_that("safetensors readers close their file connections deterministically", 
   record$architecture <- "cache-test"
   record$size_bytes <- unname(file.info(path)$size)
 
-  metadata <- zukzeit:::zuk_read_safetensors_metadata(path, record)
-  state <- zukzeit:::zuk_load_state_dict(path, record, config = list())
+  metadata <- zutsfm:::zuk_read_safetensors_metadata(path, record)
+  state <- zutsfm:::zuk_load_state_dict(path, record, config = list())
 
   expect_named(metadata, "weight")
   expect_s3_class(state$weight, "torch_tensor")

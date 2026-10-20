@@ -1,5 +1,5 @@
 # Portions derived from Toto 2.0, Copyright 2026 Datadog, Inc.
-# Translated and modified for R/torch by the zukzeit authors.
+# Translated and modified for R/torch by the zutsfm authors.
 # Licensed under Apache-2.0; see inst/COPYRIGHTS and
 # inst/LICENSES/Apache-2.0.txt.
 
@@ -141,7 +141,7 @@ toto_constructor <- function(config, weights = NULL) {
     )
   }
   runtime <- toto_zulm_runtime(config, weights)
-  # zulm runs on the CPU; zukzeit's `device` resolves to it (zulm D33)
+  # zulm runs on the CPU; zutsfm's `device` resolves to it (zulm D33)
   device <- "cpu"
   config$device <- device
 

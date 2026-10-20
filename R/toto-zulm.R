@@ -1,5 +1,5 @@
 # Portions derived from Toto 2.0, Copyright 2026 Datadog, Inc.
-# Translated and modified for R/zulm by the zukzeit authors.
+# Translated and modified for R/zulm by the zutsfm authors.
 # Licensed under Apache-2.0; see inst/COPYRIGHTS and
 # inst/LICENSES/Apache-2.0.txt.
 

@@ -7,7 +7,7 @@ test_that("the stub architecture is registered at load", {
 test_that("registration guards against silent clobbering", {
   ctor <- function(config, weights) NULL
   zuk_register_arch("test-arch", ctor)
-  on.exit(rm("test-arch", envir = zukzeit:::.zuk_registry), add = TRUE)
+  on.exit(rm("test-arch", envir = zutsfm:::.zuk_registry), add = TRUE)
   expect_error(zuk_register_arch("test-arch", ctor), "already registered")
   expect_silent(zuk_register_arch("test-arch", ctor, overwrite = TRUE))
 })
@@ -20,7 +20,7 @@ test_that("constructor registration does not extend the curated catalogue", {
     NULL
   }
   zuk_register_arch("external-test", ctor)
-  on.exit(rm("external-test", envir = zukzeit:::.zuk_registry), add = TRUE)
+  on.exit(rm("external-test", envir = zutsfm:::.zuk_registry), add = TRUE)
 
   expect_identical(zuk_models(state = NULL), before)
   error <- expect_error(

@@ -13,7 +13,7 @@
 \alias{zuk_error_download}
 \alias{zuk_error_checkpoint}
 \alias{zuk_error_contract}
-\title{Structured zukzeit conditions}
+\title{Structured zutsfm conditions}
 \description{
 Public engine failures inherit from \code{zuk_error}, one policy class, and one
 leaf class. Consumers should branch on those classes and structured fields,

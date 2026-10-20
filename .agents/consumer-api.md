@@ -1,9 +1,9 @@
-# `zukzeit` consumer API
+# `zutsfm` consumer API
 
 This document defines the public engine surface that orchestration packages
-need from `zukzeit`. The motivating consumer is **`tsai`**, the R implementation
+need from `zutsfm`. The motivating consumer is **`tsai`**, the R implementation
 of Python's TimeCopilot. At the package boundary, `tsai` is downstream of
-`zukzeit`: it may inspect and call this API, but `zukzeit` must never depend on it.
+`zutsfm`: it may inspect and call this API, but `zutsfm` must never depend on it.
 
 The same contract supports benchmark runners, unattended jobs, and model
 selection systems. It is therefore ordinary programmatic API, not an
@@ -48,7 +48,7 @@ network requests and does not construct a model.
 
 The catalogue is package-owned and release-curated. Runtime calls to
 `zuk_register_arch()` do not add rows or change support states. Consequently,
-`state = "supported"` always means certified by `zukzeit`, and `tsai` discovery is
+`state = "supported"` always means certified by `zutsfm`, and `tsai` discovery is
 independent of which extension packages happen to be installed or loaded.
 
 Required columns are:
@@ -118,7 +118,7 @@ zuk_unload(model_id = NULL, revision = NULL, device = NULL)
 - `zuk_cache_status()` returns checkpoint identity, resolved device, disk
   availability, resident state, estimated bytes, and last-use metadata.
 - `zuk_unload()` evicts matching resident handles only. `hfhub` continues to
-  own its on-disk cache; `zukzeit` does not expose disk deletion in `0.1.0`.
+  own its on-disk cache; `zutsfm` does not expose disk deletion in `0.1.0`.
 
 Resident handles use an R-session least-recently-used cache. The default is
 `options(zuk.max_loaded_models = 1L)`; `0L` disables reuse. A key includes the
@@ -153,7 +153,7 @@ separate ability to participate in `fabletools::model()`:
 fits <- fabletools::model(
   data,
   arima = fable::ARIMA(value),
-  timesfm = zukzeit::TSFM(
+  timesfm = zutsfm::TSFM(
     value,
     model_id = "google/timesfm-2.5-200m-pytorch",
     revision = "<pinned-commit-sha>"
@@ -169,7 +169,7 @@ TSFM(formula, model_id, revision = NULL,
      quantile_levels = NULL, device = NULL, ...)
 ```
 
-It is implemented in `zukzeit` with `new_model_class()` and
+It is implemented in `zutsfm` with `new_model_class()` and
 `new_model_definition()`. Zero-shot training stores the series context and
 resolved model metadata; `forecast.model_tsfm()` obtains the shared model
 handle and returns a `distributional` vector. `fabletools`, `tsibble`, and
@@ -189,10 +189,10 @@ per key. Callers that prioritize throughput should use the first path.
 
 ## Consumer boundary
 
-`zukzeit` owns checkpoint metadata, loading, execution, forecast distributions,
+`zutsfm` owns checkpoint metadata, loading, execution, forecast distributions,
 and framework adapters. A consumer such as `tsai` owns model selection,
 fallback policy, backtesting, metrics, ensembles, prompts, and tool schemas.
-No LLM, agent, or `tsai` dependency belongs in `zukzeit`.
+No LLM, agent, or `tsai` dependency belongs in `zutsfm`.
 
 In `0.1.0`, `tsai` selects only from the package-owned catalogue. External
 architecture constructors and manually created handles are not injected into
