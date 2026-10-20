@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Native Time-Series Foundation Models • zukzeit</title>
+<title>Native Time-Series Foundation Models • zutsfm</title>
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="bootstrap-toc.css">
 <script src="bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
@@ -32,7 +32,7 @@
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="index.html">zukzeit</a>
+        <a class="navbar-link" href="index.html">zutsfm</a>
         <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.0</span>
       </span>
     </div>
@@ -72,7 +72,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/pedrobtz/zukzeit/" class="external-link">
+  <a href="https://github.com/pedrobtz/zutsfm/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
 
   </a>
@@ -90,13 +90,13 @@
       </header><div class="row">
   <div class="contents col-md-9">
 <div class="section level1">
-<div class="page-header"><h1 id="zukzeit">zukzeit<a class="anchor" aria-label="anchor" href="#zukzeit"></a>
+<div class="page-header"><h1 id="zutsfm">zutsfm<a class="anchor" aria-label="anchor" href="#zutsfm"></a>
 </h1></div>
 <!-- badges: start -->
 
 <p><strong>An inference engine for time-series foundation models, natively in R.</strong></p>
-<p>The target is simple: given a supported pretrained checkpoint and a numeric context, <code>zukzeit</code> produces predictive quantiles.</p>
-<p>R already has every layer a foundation-model forecasting stack needs — Hub access (<code>hfhub</code>), checkpoint format (<code>safetensors</code>), tensor runtime (<code>torch</code>), temporal structures (<code>tsibble</code>), forecast distributions (<code>distributional</code>), backtesting (<code>rsample</code>), reconciliation and metrics (<code>fabletools</code>), and conformal calibration (<code>conformalForecast</code>). What it lacks is the <strong>model layer</strong>: a catalogue of natively implemented time-series foundation models (TSFMs) behind one capability-aware interface. <code>zukzeit</code> provides that layer:</p>
+<p>The target is simple: given a supported pretrained checkpoint and a numeric context, <code>zutsfm</code> produces predictive quantiles.</p>
+<p>R already has every layer a foundation-model forecasting stack needs — Hub access (<code>hfhub</code>), checkpoint format (<code>safetensors</code>), tensor runtime (<code>torch</code>), temporal structures (<code>tsibble</code>), forecast distributions (<code>distributional</code>), backtesting (<code>rsample</code>), reconciliation and metrics (<code>fabletools</code>), and conformal calibration (<code>conformalForecast</code>). What it lacks is the <strong>model layer</strong>: a catalogue of natively implemented time-series foundation models (TSFMs) behind one capability-aware interface. <code>zutsfm</code> provides that layer:</p>
 <ul>
 <li>
 <strong>One loader.</strong> <code>zuk_pretrained("...")</code> resolves a supported model into a uniform handle. TimesFM 2.5 is the first supported native architecture; the weight-free <code>stub</code> remains the fast engine test fixture.</li>
@@ -160,25 +160,25 @@
 </tbody>
 </table>
 <p>There are two routes into the tidyverts, and they trade convenience for throughput. <code>forecast(model, panel, h) |&gt; fabletools::as_fable()</code> runs <strong>one batched call</strong> across every series. <code><a href="reference/TSFM.html">TSFM()</a></code> composes inside <code><a href="https://fabletools.tidyverts.org/reference/model.html" class="external-link">fabletools::model()</a></code> next to ARIMA or ETS, but fabletools evaluates one key at a time, so the engine sees a batch of one per series; the checkpoint is loaded once and reused from the resident cache. Note that fabletools derives <code>.mean</code> from the distribution, so a <code><a href="reference/TSFM.html">TSFM()</a></code> fable reports the distribution’s mean while the other routes report the engine’s exact median — <code><a href="https://rdrr.io/r/stats/median.html" class="external-link">median()</a></code> recovers the point forecast on any route. See <code><a href="articles/timesfm-zero-shot.html">vignette("timesfm-zero-shot")</a></code>.</p>
-<p><code>zukzeit</code> deliberately does <strong>not</strong> define competing <code><a href="https://generics.r-lib.org/reference/forecast.html" class="external-link">forecast()</a></code> or <code>as_fable()</code> generics: it re-exports <code><a href="https://generics.r-lib.org/reference/forecast.html" class="external-link">generics::forecast</a></code> and registers its <code>as_fable</code> method onto <code>fabletools</code>, so attaching <code>zukzeit</code> alongside them never masks the verbs.</p>
+<p><code>zutsfm</code> deliberately does <strong>not</strong> define competing <code><a href="https://generics.r-lib.org/reference/forecast.html" class="external-link">forecast()</a></code> or <code>as_fable()</code> generics: it re-exports <code><a href="https://generics.r-lib.org/reference/forecast.html" class="external-link">generics::forecast</a></code> and registers its <code>as_fable</code> method onto <code>fabletools</code>, so attaching <code>zutsfm</code> alongside them never masks the verbs.</p>
 </div>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># After the CRAN release:</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"zukzeit"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"zutsfm"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Development version:</span></span>
 <span><span class="co"># install.packages("pak")</span></span>
-<span><span class="fu">pak</span><span class="fu">::</span><span class="fu"><a href="https://pak.r-lib.org/reference/pak.html" class="external-link">pak</a></span><span class="op">(</span><span class="st">"pedrobtz/zukzeit"</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">pak</span><span class="fu">::</span><span class="fu"><a href="https://pak.r-lib.org/reference/pak.html" class="external-link">pak</a></span><span class="op">(</span><span class="st">"pedrobtz/zutsfm"</span><span class="op">)</span></span></code></pre></div>
 <p>The pinned TimesFM checkpoint is about 925 MB. It is downloaded once through <code>hfhub</code>, loaded into native R <code>torch</code>, and reused from a bounded in-session handle cache. Use <code><a href="reference/zuk_download.html">zuk_download()</a></code> to prefetch it explicitly.</p>
 </div>
 <div class="section level2">
 <h2 id="quick-start">Quick start<a class="anchor" aria-label="anchor" href="#quick-start"></a>
 </h2>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/pedrobtz/zukzeit" class="external-link">zukzeit</a></span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/pedrobtz/zutsfm" class="external-link">zutsfm</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">history</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span>
 <span>  time <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">24</span>,</span>
@@ -198,7 +198,7 @@
 <span></span>
 <span><span class="co"># Or compose the model inside a mable, next to any other tidyverts model.</span></span>
 <span><span class="va">history_ts</span> <span class="op">&lt;-</span> <span class="fu">tsibble</span><span class="fu">::</span><span class="fu"><a href="https://tsibble.tidyverts.org/reference/as-tsibble.html" class="external-link">as_tsibble</a></span><span class="op">(</span><span class="va">history</span>, index <span class="op">=</span> <span class="va">time</span><span class="op">)</span></span>
-<span><span class="va">fits</span> <span class="op">&lt;-</span> <span class="fu">fabletools</span><span class="fu">::</span><span class="fu"><a href="https://fabletools.tidyverts.org/reference/model.html" class="external-link">model</a></span><span class="op">(</span><span class="va">history_ts</span>, zukzeit <span class="op">=</span> <span class="fu"><a href="reference/TSFM.html">TSFM</a></span><span class="op">(</span><span class="va">value</span>, model_id <span class="op">=</span> <span class="st">"stub"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">fits</span> <span class="op">&lt;-</span> <span class="fu">fabletools</span><span class="fu">::</span><span class="fu"><a href="https://fabletools.tidyverts.org/reference/model.html" class="external-link">model</a></span><span class="op">(</span><span class="va">history_ts</span>, zutsfm <span class="op">=</span> <span class="fu"><a href="reference/TSFM.html">TSFM</a></span><span class="op">(</span><span class="va">value</span>, model_id <span class="op">=</span> <span class="st">"stub"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu">fabletools</span><span class="fu">::</span><span class="fu"><a href="https://generics.r-lib.org/reference/forecast.html" class="external-link">forecast</a></span><span class="op">(</span><span class="va">fits</span>, h <span class="op">=</span> <span class="fl">6</span><span class="op">)</span></span></code></pre></div>
 <p>Swap <code>"stub"</code> for <code>"google/timesfm-2.5-200m-pytorch"</code> and the same code runs the real checkpoint.</p>
 <p>Vignettes: <code><a href="articles/timesfm-zero-shot.html">vignette("timesfm-zero-shot")</a></code> walks the whole public surface on a real checkpoint; <code><a href="articles/electricity-demand.html">vignette("electricity-demand")</a></code> scores it against seasonal naive, ETS, and ARIMA on held-out data; <code><a href="articles/zero-shot-workflow.html">vignette("zero-shot-workflow")</a></code> and <code><a href="articles/rolling-origin-tuning.html">vignette("rolling-origin-tuning")</a></code> cover the engine and tuning with the stub.</p>
@@ -220,7 +220,7 @@
 <span><span class="op">}</span></span>
 <span></span>
 <span><span class="fu"><a href="reference/zuk_check_architecture.html">zuk_check_architecture</a></span><span class="op">(</span><span class="va">my_arch</span><span class="op">)</span>          <span class="co"># contract conformance gate</span></span></code></pre></div>
-<p>The checkpoint catalogue is owned and curated by <code>zukzeit</code>. Registering a constructor with <code><a href="reference/zuk_register_arch.html">zuk_register_arch()</a></code> changes only the current session’s architecture mapping; it does not add a row to <code><a href="reference/zuk_models.html">zuk_models()</a></code> or make an arbitrary model ID loadable through <code><a href="reference/zuk_pretrained.html">zuk_pretrained()</a></code>, <code><a href="reference/TSFM.html">TSFM()</a></code>, or parsnip. Catalogue inclusion requires an immutable checkpoint revision, manifest, licence metadata, contract conformance, and committed numerical-parity evidence to be reviewed in this repository. Independently constructed <code>zuk_model</code> handles can use the plain <code><a href="https://generics.r-lib.org/reference/forecast.html" class="external-link">forecast()</a></code> path without catalogue registration.</p>
+<p>The checkpoint catalogue is owned and curated by <code>zutsfm</code>. Registering a constructor with <code><a href="reference/zuk_register_arch.html">zuk_register_arch()</a></code> changes only the current session’s architecture mapping; it does not add a row to <code><a href="reference/zuk_models.html">zuk_models()</a></code> or make an arbitrary model ID loadable through <code><a href="reference/zuk_pretrained.html">zuk_pretrained()</a></code>, <code><a href="reference/TSFM.html">TSFM()</a></code>, or parsnip. Catalogue inclusion requires an immutable checkpoint revision, manifest, licence metadata, contract conformance, and committed numerical-parity evidence to be reviewed in this repository. Independently constructed <code>zuk_model</code> handles can use the plain <code><a href="https://generics.r-lib.org/reference/forecast.html" class="external-link">forecast()</a></code> path without catalogue registration.</p>
 </div>
 <div class="section level2">
 <h2 id="model-catalogue">Model catalogue<a class="anchor" aria-label="anchor" href="#model-catalogue"></a>
@@ -264,7 +264,7 @@
 </table>
 <p>TimesFM is marked supported because it passes both the architecture conformance gate and every committed numerical-parity fixture against the pinned official implementation.</p>
 <p>The release roadmap adds Toto 2.0 4M and a new native Chronos-2 port before <code>0.1.0</code>; Granite PatchTST-FM and Sundial are the selected later capability representatives. Planned models do not appear in <code><a href="reference/zuk_models.html">zuk_models()</a></code> until their metadata and executable support gates are complete.</p>
-<p><code><a href="reference/zuk_models.html">zuk_models()</a></code> is package-owned: <code>supported</code> means the checkpoint has passed <code>zukzeit</code>’s release gates, not that another package registered a constructor in the current session.</p>
+<p><code><a href="reference/zuk_models.html">zuk_models()</a></code> is package-owned: <code>supported</code> means the checkpoint has passed <code>zutsfm</code>’s release gates, not that another package registered a constructor in the current session.</p>
 <div class="section level4">
 <h4 id="horizon-and-effective-context">Horizon and effective context<a class="anchor" aria-label="anchor" href="#horizon-and-effective-context"></a>
 </h4>
@@ -295,8 +295,8 @@
 <h3 id="checkpoint-provenance-cache-size-and-licence">Checkpoint provenance, cache, size, and licence<a class="anchor" aria-label="anchor" href="#checkpoint-provenance-cache-size-and-licence"></a>
 </h3>
 <p>The TimesFM feasibility work is pinned to official source commit <code>3dae50b20d7a724981e8ea36cda75578f80dd2dc</code> and checkpoint revision <code>1d952420fba87f3c6dee4f240de0f1a0fbc790e3</code>. The catalogue never resolves a moving <code>main</code> branch for curated support metadata.</p>
-<p><code>cached</code> means every file in the checkpoint’s static manifest is already in the cache managed by <code>hfhub</code>. Probes always set <code>local_files_only = TRUE</code>. <code>hfhub</code> uses <code>HUGGINGFACE_HUB_CACHE</code> when set and otherwise defaults to <code>~/.cache/huggingface/hub</code>; <code>zukzeit</code> does not create a second disk cache. A known incomplete manifest is <code>FALSE</code>, while <code>NA</code> means the catalogue entry has no manifest definition yet.</p>
-<p><code>size_bytes</code> is a static first-download estimate exposed before loading. The pinned TimesFM <code>model.safetensors</code> is 925,181,104 bytes (about 925 MB, or 882 MiB), excluding small metadata files and live tensor/runtime overhead. The catalogue’s <code>license</code> column is the upstream <strong>weight</strong> licence—Apache-2.0 for the current curated records. The original <code>zukzeit</code> code is MIT licensed; the native TimesFM files identified in <code>inst/COPYRIGHTS</code> are modified derivative works under Apache-2.0 and retain Google LLC’s copyright notice. The complete Apache licence is installed with the package. <code>zukzeit</code> reports upstream weight terms and never accepts gated-repository terms on a user’s behalf.</p>
+<p><code>cached</code> means every file in the checkpoint’s static manifest is already in the cache managed by <code>hfhub</code>. Probes always set <code>local_files_only = TRUE</code>. <code>hfhub</code> uses <code>HUGGINGFACE_HUB_CACHE</code> when set and otherwise defaults to <code>~/.cache/huggingface/hub</code>; <code>zutsfm</code> does not create a second disk cache. A known incomplete manifest is <code>FALSE</code>, while <code>NA</code> means the catalogue entry has no manifest definition yet.</p>
+<p><code>size_bytes</code> is a static first-download estimate exposed before loading. The pinned TimesFM <code>model.safetensors</code> is 925,181,104 bytes (about 925 MB, or 882 MiB), excluding small metadata files and live tensor/runtime overhead. The catalogue’s <code>license</code> column is the upstream <strong>weight</strong> licence—Apache-2.0 for the current curated records. The original <code>zutsfm</code> code is MIT licensed; the native TimesFM files identified in <code>inst/COPYRIGHTS</code> are modified derivative works under Apache-2.0 and retain Google LLC’s copyright notice. The complete Apache licence is installed with the package. <code>zutsfm</code> reports upstream weight terms and never accepts gated-repository terms on a user’s behalf.</p>
 </div>
 <div class="section level3">
 <h3 id="download-and-constructed-handle-lifecycle">Download and constructed-handle lifecycle<a class="anchor" aria-label="anchor" href="#download-and-constructed-handle-lifecycle"></a>
@@ -332,9 +332,9 @@
 <div class="section level2">
 <h2 id="scope">Scope<a class="anchor" aria-label="anchor" href="#scope"></a>
 </h2>
-<p><code>zukzeit</code> owns the model layer and thin adapters only. Backtesting, metrics, reconciliation, conformal calibration, tuning, and feature engineering are delegated to the existing R stack.</p>
-<p>Explicitly <strong>out of scope</strong>: hosted-API models (<code>nixtlar</code> covers TimeGPT), training from scratch, and distributed execution. <code>zukzeit</code> runs open weights locally; anything served over a network belongs to its own client.</p>
-<p>See the <a href="https://github.com/pedrobtz/zukzeit/blob/main/.agents/roadmap.md" class="external-link">release roadmap</a> and <a href="https://github.com/pedrobtz/zukzeit/blob/main/.agents/plan.md" class="external-link">implementation plan</a> for the staged plan and full gap analysis.</p>
+<p><code>zutsfm</code> owns the model layer and thin adapters only. Backtesting, metrics, reconciliation, conformal calibration, tuning, and feature engineering are delegated to the existing R stack.</p>
+<p>Explicitly <strong>out of scope</strong>: hosted-API models (<code>nixtlar</code> covers TimeGPT), training from scratch, and distributed execution. <code>zutsfm</code> runs open weights locally; anything served over a network belongs to its own client.</p>
+<p>See the <a href="https://github.com/pedrobtz/zutsfm/blob/main/.agents/roadmap.md" class="external-link">release roadmap</a> and <a href="https://github.com/pedrobtz/zutsfm/blob/main/.agents/plan.md" class="external-link">implementation plan</a> for the staged plan and full gap analysis.</p>
 </div>
 </div>
   </div>
@@ -343,8 +343,8 @@
     <div class="links">
 <h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
-<li><a href="https://github.com/pedrobtz/zukzeit/" class="external-link">Browse source code</a></li>
-<li><a href="https://github.com/pedrobtz/zukzeit/issues" class="external-link">Report a bug</a></li>
+<li><a href="https://github.com/pedrobtz/zutsfm/" class="external-link">Browse source code</a></li>
+<li><a href="https://github.com/pedrobtz/zutsfm/issues" class="external-link">Report a bug</a></li>
 </ul>
 </div>
 
@@ -361,7 +361,7 @@
 <div class="citation">
 <h2 data-toc-skip>Citation</h2>
 <ul class="list-unstyled">
-<li><a href="authors.html#citation">Citing zukzeit</a></li>
+<li><a href="authors.html#citation">Citing zutsfm</a></li>
 </ul>
 </div>
 
@@ -376,7 +376,7 @@
 <div class="dev-status">
 <h2 data-toc-skip>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://github.com/pedrobtz/zukzeit/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/pedrobtz/zukzeit/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a></li>
+<li><a href="https://github.com/pedrobtz/zutsfm/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/pedrobtz/zutsfm/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a></li>
 </ul>
 </div>
 

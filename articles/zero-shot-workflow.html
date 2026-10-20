@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Exercising the forecasting workflow • zukzeit</title>
+<title>Exercising the forecasting workflow • zutsfm</title>
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../bootstrap-toc.css">
 <script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
@@ -31,7 +31,7 @@
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">zukzeit</a>
+        <a class="navbar-link" href="../index.html">zutsfm</a>
         <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.0</span>
       </span>
     </div>
@@ -71,7 +71,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/pedrobtz/zukzeit/" class="external-link">
+  <a href="https://github.com/pedrobtz/zutsfm/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
 
   </a>
@@ -92,7 +92,7 @@
       <h1 data-toc-skip>Exercising the forecasting workflow</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/pedrobtz/zukzeit/blob/main/vignettes/zero-shot-workflow.Rmd" class="external-link"><code>vignettes/zero-shot-workflow.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/pedrobtz/zutsfm/blob/main/vignettes/zero-shot-workflow.Rmd" class="external-link"><code>vignettes/zero-shot-workflow.Rmd</code></a></small>
       <div class="hidden name"><code>zero-shot-workflow.Rmd</code></div>
 
     </div>
@@ -112,7 +112,7 @@ produced when this vignette is built.</p>
 <p><code><a href="../reference/zuk_pretrained.html">zuk_pretrained()</a></code> returns a uniform model handle. The
 stub branch is entirely local and deterministic:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/pedrobtz/zukzeit" class="external-link">zukzeit</a></span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/pedrobtz/zutsfm" class="external-link">zutsfm</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">model</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/zuk_pretrained.html">zuk_pretrained</a></span><span class="op">(</span><span class="st">"stub"</span><span class="op">)</span></span></code></pre></div>
 <p>Before doing any work, ask what the model can do. The capability
@@ -205,10 +205,10 @@ joins straight back onto the data it came from.</p>
 <div class="section level2">
 <h2 id="path-2-the-tidyverts">Path 2 — the tidyverts<a class="anchor" aria-label="anchor" href="#path-2-the-tidyverts"></a>
 </h2>
-<p><code>zukzeit</code> registers a method on
+<p><code>zutsfm</code> registers a method on
 <code><a href="https://fabletools.tidyverts.org/reference/as-fable.html" class="external-link">fabletools::as_fable()</a></code> rather than exporting a generic of
 its own, so the verb keeps working when fabletools and
-<code>zukzeit</code> are both attached. Call it qualified, or
+<code>zutsfm</code> are both attached. Call it qualified, or
 <code><a href="https://fabletools.tidyverts.org/" class="external-link">library(fabletools)</a></code> first.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># yearmonth is the natural index for monthly data: calendar months are not</span></span>
@@ -232,11 +232,11 @@ its own, so the verb keeps working when fabletools and
 <code><a href="https://fabletools.tidyverts.org/reference/model.html" class="external-link">fabletools::model()</a></code> next to any other model definition, one
 key at a time.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">fits</span> <span class="op">&lt;-</span> <span class="fu">fabletools</span><span class="fu">::</span><span class="fu"><a href="https://fabletools.tidyverts.org/reference/model.html" class="external-link">model</a></span><span class="op">(</span><span class="va">history_tsbl</span>, zukzeit <span class="op">=</span> <span class="fu"><a href="../reference/TSFM.html">TSFM</a></span><span class="op">(</span><span class="va">sales</span>, model_id <span class="op">=</span> <span class="st">"stub"</span><span class="op">)</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">fits</span> <span class="op">&lt;-</span> <span class="fu">fabletools</span><span class="fu">::</span><span class="fu"><a href="https://fabletools.tidyverts.org/reference/model.html" class="external-link">model</a></span><span class="op">(</span><span class="va">history_tsbl</span>, zutsfm <span class="op">=</span> <span class="fu"><a href="../reference/TSFM.html">TSFM</a></span><span class="op">(</span><span class="va">sales</span>, model_id <span class="op">=</span> <span class="st">"stub"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">fits</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A mable: 2 x 2</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># Key:     store [2]</span></span></span>
-<span><span class="co">#&gt;   store      zukzeit</span></span>
+<span><span class="co">#&gt;   store       zutsfm</span></span>
 <span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;model&gt;</span></span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> north &lt;TSFM[stub]&gt;</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> south &lt;TSFM[stub]&gt;</span></span>
@@ -244,14 +244,14 @@ key at a time.</p>
 <span><span class="fu">fabletools</span><span class="fu">::</span><span class="fu"><a href="https://generics.r-lib.org/reference/forecast.html" class="external-link">forecast</a></span><span class="op">(</span><span class="va">fits</span>, h <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A fable: 6 x 5 [1M]</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># Key:     store, .model [2]</span></span></span>
-<span><span class="co">#&gt;   store .model     month       sales .mean</span></span>
-<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;mth&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dist&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> north zukzeit 2022 Jan quantile[3] 164. </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> north zukzeit 2022 Feb quantile[3] 164. </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> north zukzeit 2022 Mar quantile[3] 164. </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> south zukzeit 2022 Jan quantile[3]  81.6</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> south zukzeit 2022 Feb quantile[3]  81.6</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span> south zukzeit 2022 Mar quantile[3]  81.6</span></span></code></pre></div>
+<span><span class="co">#&gt;   store .model    month       sales .mean</span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;mth&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dist&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> north zutsfm 2022 Jan quantile[3] 164. </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> north zutsfm 2022 Feb quantile[3] 164. </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> north zutsfm 2022 Mar quantile[3] 164. </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> south zutsfm 2022 Jan quantile[3]  81.6</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> south zutsfm 2022 Feb quantile[3]  81.6</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span> south zutsfm 2022 Mar quantile[3]  81.6</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="path-3-a-tidymodels-workflow">Path 3 — a tidymodels workflow<a class="anchor" aria-label="anchor" href="#path-3-a-tidymodels-workflow"></a>
@@ -265,7 +265,7 @@ same.</strong></p>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/tidymodels/workflows" class="external-link">workflows</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">spec</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/zuk_reg.html">zuk_reg</a></span><span class="op">(</span>context_length <span class="op">=</span> <span class="fl">512L</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://parsnip.tidymodels.org/reference/set_engine.html" class="external-link">set_engine</a></span><span class="op">(</span><span class="st">"zukzeit"</span>,</span>
+<span>  <span class="fu"><a href="https://parsnip.tidymodels.org/reference/set_engine.html" class="external-link">set_engine</a></span><span class="op">(</span><span class="st">"zutsfm"</span>,</span>
 <span>             model_id <span class="op">=</span> <span class="st">"stub"</span>,</span>
 <span>             index    <span class="op">=</span> <span class="st">"month"</span>,</span>
 <span>             id       <span class="op">=</span> <span class="st">"store"</span><span class="op">)</span></span>
@@ -302,7 +302,7 @@ resamples works out of the box:</p>
 <span>  <span class="fu"><a href="https://workflows.tidymodels.org/reference/workflow.html" class="external-link">workflow</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://workflows.tidymodels.org/reference/add_variables.html" class="external-link">add_variables</a></span><span class="op">(</span>outcomes <span class="op">=</span> <span class="va">sales</span>, predictors <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">month</span>, <span class="va">store</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://workflows.tidymodels.org/reference/add_model.html" class="external-link">add_model</a></span><span class="op">(</span><span class="fu"><a href="../reference/zuk_reg.html">zuk_reg</a></span><span class="op">(</span>context_length <span class="op">=</span> <span class="fu"><a href="https://hardhat.tidymodels.org/reference/tune.html" class="external-link">tune</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>                <span class="fu"><a href="https://parsnip.tidymodels.org/reference/set_engine.html" class="external-link">set_engine</a></span><span class="op">(</span><span class="st">"zukzeit"</span>, model_id <span class="op">=</span> <span class="st">"stub"</span>,</span>
+<span>                <span class="fu"><a href="https://parsnip.tidymodels.org/reference/set_engine.html" class="external-link">set_engine</a></span><span class="op">(</span><span class="st">"zutsfm"</span>, model_id <span class="op">=</span> <span class="st">"stub"</span>,</span>
 <span>                           index <span class="op">=</span> <span class="st">"month"</span>, id <span class="op">=</span> <span class="st">"store"</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>  resamples <span class="op">=</span> <span class="fu"><a href="https://rsample.tidymodels.org/reference/slide-resampling.html" class="external-link">sliding_period</a></span><span class="op">(</span><span class="va">history</span><span class="op">[</span><span class="va">history</span><span class="op">$</span><span class="va">store</span> <span class="op">==</span> <span class="st">"north"</span>, <span class="op">]</span>,</span>
 <span>                             index <span class="op">=</span> <span class="va">month</span>, period <span class="op">=</span> <span class="st">"year"</span>,</span>
@@ -348,7 +348,7 @@ Evicting it does not touch anything on disk:</p>
 <span><span class="co">#&gt; 2  477930472                &lt;NA&gt;</span></span>
 <span><span class="co">#&gt; 3   16582848                &lt;NA&gt;</span></span>
 <span><span class="co">#&gt; 4    3240592                &lt;NA&gt;</span></span>
-<span><span class="co">#&gt; 5          0 2026-09-05 07:39:16</span></span>
+<span><span class="co">#&gt; 5          0 2026-10-20 12:08:38</span></span>
 <span></span>
 <span><span class="fu"><a href="../reference/zuk_unload.html">zuk_unload</a></span><span class="op">(</span><span class="st">"stub"</span><span class="op">)</span></span></code></pre></div>
 </div>

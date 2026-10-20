@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tuning context length with rolling-origin resampling • zukzeit</title>
+<title>Tuning context length with rolling-origin resampling • zutsfm</title>
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../bootstrap-toc.css">
 <script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
@@ -31,7 +31,7 @@
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">zukzeit</a>
+        <a class="navbar-link" href="../index.html">zutsfm</a>
         <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.0</span>
       </span>
     </div>
@@ -71,7 +71,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/pedrobtz/zukzeit/" class="external-link">
+  <a href="https://github.com/pedrobtz/zutsfm/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
 
   </a>
@@ -93,7 +93,7 @@
 resampling</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/pedrobtz/zukzeit/blob/main/vignettes/rolling-origin-tuning.Rmd" class="external-link"><code>vignettes/rolling-origin-tuning.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/pedrobtz/zutsfm/blob/main/vignettes/rolling-origin-tuning.Rmd" class="external-link"><code>vignettes/rolling-origin-tuning.Rmd</code></a></small>
       <div class="hidden name"><code>rolling-origin-tuning.Rmd</code></div>
 
     </div>
@@ -102,7 +102,7 @@ resampling</h1>
     
 <p>How much history should a foundation model condition on? More context
 is not always better — it can dilute recent signal and cost compute.
-Because <code>zukzeit</code> exposes <code>context_length</code> as a
+Because <code>zutsfm</code> exposes <code>context_length</code> as a
 tunable <code>dials</code> parameter, you can answer this empirically
 with the standard tidymodels tuning machinery over
 <strong>rolling-origin</strong> (time-aware) resamples, rather than
@@ -117,7 +117,7 @@ that means something.</p>
 <h2 id="some-history-to-search-over">Some history to search over<a class="anchor" aria-label="anchor" href="#some-history-to-search-over"></a>
 </h2>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/pedrobtz/zukzeit" class="external-link">zukzeit</a></span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/pedrobtz/zutsfm" class="external-link">zutsfm</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">20260904</span><span class="op">)</span></span>
 <span><span class="va">months</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="st">"2015-01-01"</span><span class="op">)</span>, by <span class="op">=</span> <span class="st">"month"</span>, length.out <span class="op">=</span> <span class="fl">96</span><span class="op">)</span></span>
@@ -147,7 +147,7 @@ through the engine:</p>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://rsample.tidymodels.org" class="external-link">rsample</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">spec</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/zuk_reg.html">zuk_reg</a></span><span class="op">(</span>context_length <span class="op">=</span> <span class="fu"><a href="https://hardhat.tidymodels.org/reference/tune.html" class="external-link">tune</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://parsnip.tidymodels.org/reference/set_engine.html" class="external-link">set_engine</a></span><span class="op">(</span><span class="st">"zukzeit"</span>,</span>
+<span>  <span class="fu"><a href="https://parsnip.tidymodels.org/reference/set_engine.html" class="external-link">set_engine</a></span><span class="op">(</span><span class="st">"zutsfm"</span>,</span>
 <span>             model_id <span class="op">=</span> <span class="st">"stub"</span>,</span>
 <span>             index    <span class="op">=</span> <span class="st">"month"</span>,</span>
 <span>             id       <span class="op">=</span> <span class="st">"store"</span><span class="op">)</span></span>
