@@ -116,7 +116,7 @@ test_that("journey 4: parsnip fit() and predict()", {
   panel <- smoke_panel(keys = "store_a")
   spec <- parsnip::set_engine(
     zuk_reg(),
-    "zukzeit",
+    "zutsfm",
     model_id = record$model_id,
     revision = record$revision,
     device = "cpu",

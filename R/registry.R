@@ -14,10 +14,10 @@
 #' Registration changes only the current R session's constructor mapping. It
 #' does not add a checkpoint to [zuk_models()] or make an arbitrary model ID
 #' loadable through [zuk_pretrained()]. The loader consults this registry only
-#' after resolving a checkpoint from `zukzeit`'s package-owned curated catalogue.
+#' after resolving a checkpoint from `zutsfm`'s package-owned curated catalogue.
 #' Architecture authors can use [zuk_check_architecture()] independently;
 #' catalogue inclusion requires the checkpoint's metadata, immutable revision,
-#' licence, and numerical-parity evidence to be reviewed in `zukzeit`.
+#' licence, and numerical-parity evidence to be reviewed in `zutsfm`.
 #'
 #' @param architecture Character scalar key (matched against `config.json`).
 #' @param constructor A function `function(config, weights)`.

@@ -347,15 +347,15 @@ quantile_column_names <- function(levels) {
 
 # ---- fable adapter ----------------------------------------------------------
 
-#' Convert a zukzeit forecast to a fable
+#' Convert a zutsfm forecast to a fable
 #'
 #' A method for [fabletools::as_fable()], so a `zuk_forecast` flows into
 #' `fabletools::accuracy()`, reconciliation, and the tidyverts plotting stack.
 #'
 #' fabletools is an optional adapter dependency, so this method is registered
 #' lazily from `.onLoad()` via [vctrs::s3_register()] — it becomes available as
-#' soon as fabletools is loaded, and its absence never blocks loading zukzeit.
-#' Call it as `fabletools::as_fable(x)`; zukzeit deliberately does not define a
+#' soon as fabletools is loaded, and its absence never blocks loading zutsfm.
+#' Call it as `fabletools::as_fable(x)`; zutsfm deliberately does not define a
 #' competing `as_fable()` generic.
 #'
 #' @param x A `zuk_forecast`.
@@ -372,7 +372,7 @@ quantile_column_names <- function(levels) {
 #'   index = month
 #' )
 #'
-#' # Call it qualified: zukzeit registers a method rather than a rival generic.
+#' # Call it qualified: zutsfm registers a method rather than a rival generic.
 #' fabletools::as_fable(forecast(model, history, h = 3))
 #'
 #' zuk_unload("stub")
@@ -419,7 +419,7 @@ as_fable.zuk_forecast <- function(x, ...) {
 # The `forecast()` verb is shared across the R forecasting ecosystem
 # (fabletools, modeltime, forecast) via the generic that lives in `generics`.
 # Re-exporting it — rather than defining a competing local generic — is what
-# keeps dispatch correct when zukzeit is attached alongside those packages.
+# keeps dispatch correct when zutsfm is attached alongside those packages.
 
 #' @importFrom generics forecast
 #' @export
@@ -429,7 +429,7 @@ generics::forecast
 #'
 #' The convenience surface: hand a panel of history and a horizon, get a
 #' `zuk_forecast` back. This is a method for [generics::forecast()], the same
-#' generic fabletools and modeltime dispatch on, so attaching zukzeit alongside
+#' generic fabletools and modeltime dispatch on, so attaching zutsfm alongside
 #' them never masks the verb.
 #'
 #' @param object A `zuk_model`.

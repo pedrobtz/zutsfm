@@ -2,7 +2,7 @@
 
 ## Project Structure & Module Organization
 
-`zukzeit` is an R package. Source files live in `R/`: engine contracts and model
+`zutsfm` is an R package. Source files live in `R/`: engine contracts and model
 handles are in `contract.R`, `model.R`, and `capabilities.R`; loading and
 dispatch are in `hub.R` and `registry.R`; execution is in `batching.R`; model
 ports use `arch-<name>.R`. Keep framework integrations isolated in files such

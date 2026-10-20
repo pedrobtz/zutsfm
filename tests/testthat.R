@@ -1,4 +1,4 @@
 library(testthat)
-library(zukzeit)
+library(zutsfm)
 
-test_check("zukzeit")
+test_check("zutsfm")

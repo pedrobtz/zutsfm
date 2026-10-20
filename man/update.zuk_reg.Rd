@@ -2,7 +2,7 @@
 % Please edit documentation in R/parsnip.R
 \name{update.zuk_reg}
 \alias{update.zuk_reg}
-\title{Update a zukzeit model specification}
+\title{Update a zutsfm model specification}
 \usage{
 \method{update}{zuk_reg}(object, parameters = NULL, context_length = NULL, fresh = FALSE, ...)
 }

@@ -20,7 +20,7 @@ below was produced by running the code exactly as written.
 file, so you can compare cost and capability before committing to a download.
 
 ```{r}
-library(zukzeit)
+library(zutsfm)
 
 zuk_models()[, c("model_id", "architecture", "max_context", "n_params",
                  "size_bytes", "cached")]

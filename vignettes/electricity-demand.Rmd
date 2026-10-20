@@ -17,7 +17,7 @@ foundation model actually any good?**
 
 We forecast Victorian daily electricity demand with TimesFM 2.5 and put it in
 the same mable as seasonal naive, ETS, and ARIMA, then score all four on held-out
-data with `fabletools::accuracy()`. Nothing here is special-cased for `zukzeit` — the
+data with `fabletools::accuracy()`. Nothing here is special-cased for `zutsfm` — the
 foundation model is just another column.
 
 Chunks are not evaluated when the vignette is built, because that would download
@@ -59,7 +59,7 @@ Australia, 2012–2014, from the Monash Time Series Forecasting Archive
 leaves a clean weekly cycle plus a strong annual temperature effect.
 
 ```{r}
-library(zukzeit)
+library(zutsfm)
 library(tsibbledata)
 library(tsibble)
 library(fable)
@@ -220,7 +220,7 @@ classical models by a wide margin, with no tuning and no training.
 
 That result is real but narrow. The same benchmark literature that reports strong
 zero-shot performance also reports that these models lose to simple baselines on
-short, noisy, or very high-frequency series. `zukzeit` is built so the comparison
+short, noisy, or very high-frequency series. `zutsfm` is built so the comparison
 above is cheap to run: put `TSFM()` in the mable next to `SNAIVE()` and let
 `accuracy()` settle it on your data.
 

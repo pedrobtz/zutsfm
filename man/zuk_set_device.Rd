@@ -2,7 +2,7 @@
 % Please edit documentation in R/batching.R
 \name{zuk_set_device}
 \alias{zuk_set_device}
-\title{Set or get the default zukzeit compute device}
+\title{Set or get the default zutsfm compute device}
 \usage{
 zuk_set_device(device)
 }

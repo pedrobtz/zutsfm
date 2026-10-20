@@ -146,7 +146,7 @@ Three things are consistent across all five:
 
 `nixtlar` is the most instructive, being the only one of the five wrapping a
 foundation model that supports both covariate kinds --- the same position
-`zukzeit` is in. Its answer is the minimal one: extra panel columns are
+`zutsfm` is in. Its answer is the minimal one: extra panel columns are
 covariates, `hist_exog_list` names those without a future, and everything else
 is expected in `X_df`. `fable` and `prophet` do not make the distinction at all
 because their models only accept future-known regressors.
@@ -219,7 +219,7 @@ consuming them means re-introducing the recipe and blueprint machinery
 deliberately removed from `zuk_fit()`, which bought nothing when it was there.
 Passing `covariates` and `future` through `set_engine()` matches the plain-R
 route and adds no dependency. Recipe roles become worth it when a consumer
-actually drives `zukzeit` from a recipe.
+actually drives `zutsfm` from a recipe.
 
 ### The gap: cross-learning across keys
 

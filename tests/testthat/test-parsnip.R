@@ -14,15 +14,15 @@ test_that("model identity is supplied through set_engine", {
   make_zuk_reg()
 
   spec_stub <- parsnip::set_engine(
-    zuk_reg(), "zukzeit",
+    zuk_reg(), "zutsfm",
     model_id = "stub", index = "date", id = "store"
   )
   spec_other <- parsnip::set_engine(
-    zuk_reg(), "zukzeit",
+    zuk_reg(), "zutsfm",
     model_id = "stub-alternate", index = "date", id = "store"
   )
 
-  expect_identical(spec_stub$engine, "zukzeit")
+  expect_identical(spec_stub$engine, "zutsfm")
   expect_identical(
     rlang::eval_tidy(spec_stub$eng_args$model_id),
     "stub"
@@ -40,13 +40,13 @@ test_that("parsnip fits and predicts through the exported stub bridge", {
   skip_if_not_installed("distributional")
   make_zuk_reg()
 
-  expect_true("zuk_parsnip_fit" %in% getNamespaceExports("zukzeit"))
+  expect_true("zuk_parsnip_fit" %in% getNamespaceExports("zutsfm"))
 
   train <- data.frame(store = "a", date = 1:20, value = as.numeric(1:20))
   future <- data.frame(store = "a", date = 21:23)
   spec <- parsnip::set_engine(
     zuk_reg(context_length = 8L),
-    "zukzeit",
+    "zutsfm",
     model_id = "stub",
     index = "date",
     id = "store"
@@ -101,7 +101,7 @@ test_that("a tuned context_length can be finalized back into a workflow", {
   train <- data.frame(store = "a", day = 1:40, sales = as.numeric(1:40))
   spec <- parsnip::set_engine(
     zuk_reg(context_length = tune::tune()),
-    "zukzeit", model_id = "stub", index = "day", id = "store"
+    "zutsfm", model_id = "stub", index = "day", id = "store"
   )
   wf <- workflows::add_model(
     workflows::add_variables(
@@ -136,7 +136,7 @@ test_that("a workflow must pass the index and id columns to the engine", {
   train <- data.frame(store = "a", day = 1:40, sales = as.numeric(1:40))
   spec <- parsnip::set_engine(
     zuk_reg(context_length = 16L),
-    "zukzeit", model_id = "stub", index = "day", id = "store"
+    "zutsfm", model_id = "stub", index = "day", id = "store"
   )
 
   # add_variables() passes the named columns through untouched.

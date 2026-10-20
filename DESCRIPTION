@@ -1,4 +1,4 @@
-Package: zukzeit
+Package: zutsfm
 Title: Native Time-Series Foundation Models
 Version: 0.1.0
 Authors@R: c(
@@ -20,8 +20,8 @@ Description: Runs open time-series foundation models natively in 'R'. It
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-URL: https://github.com/pedrobtz/zukzeit
-BugReports: https://github.com/pedrobtz/zukzeit/issues
+URL: https://github.com/pedrobtz/zutsfm
+BugReports: https://github.com/pedrobtz/zutsfm/issues
 Depends:
     R (>= 4.1.0)
 Imports:
@@ -53,4 +53,4 @@ Suggests:
     yardstick
 VignetteBuilder: knitr
 Config/testthat/edition: 3
-Config/roxygen2/version: 8.0.0
+Config/roxygen2/version: 8.1.0

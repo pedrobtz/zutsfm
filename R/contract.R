@@ -1,12 +1,12 @@
 # The public architecture contract.
 #
-# zukzeit is an engine: the surface below is what architecture implementations are
+# zutsfm is an engine: the surface below is what architecture implementations are
 # written against, so it is versioned and changes only with a deprecation cycle.
 # Everything else in the package (loaders, adapters, batching) is free to move.
 
-#' The zukzeit architecture contract
+#' The zutsfm architecture contract
 #'
-#' `zukzeit` is an inference engine: it owns the path from a pretrained checkpoint
+#' `zutsfm` is an inference engine: it owns the path from a pretrained checkpoint
 #' to predictive quantiles, and nothing above it. An *architecture* is a
 #' constructor and forward pass satisfying the contract described here.
 #'
@@ -14,7 +14,7 @@
 #' the current R session. Registration does not add checkpoint metadata to the
 #' package-owned catalogue and does not make arbitrary model IDs available to
 #' [zuk_pretrained()] or model-ID-based adapters. A checkpoint is exposed by
-#' those APIs only after it is curated in `zukzeit`, including an immutable
+#' those APIs only after it is curated in `zutsfm`, including an immutable
 #' revision, manifest, licence metadata, contract conformance, and numerical
 #' parity. Independently constructed [new_zuk_model()] handles can still use
 #' the framework-neutral [forecast()] path.
@@ -141,7 +141,7 @@ NULL
 #' The architecture contract version
 #'
 #' The version of the contract described in `?`[zuk-architecture-contract] that
-#' this installation of zukzeit implements. Stamped onto every [new_zuk_model()].
+#' this installation of zutsfm implements. Stamped onto every [new_zuk_model()].
 #'
 #' @return A [package_version].
 #' @export

@@ -17,7 +17,7 @@
 # Without that reuse a 200-key panel would load a 925 MB checkpoint 200 times.
 
 # The model class is built lazily: fabletools is an optional adapter dependency,
-# so it must not be needed to install or load zukzeit. Memoised because the class
+# so it must not be needed to install or load zutsfm. Memoised because the class
 # object is immutable and identical across calls --- dispatch happens on the
 # fitted object's own class, not on this generator.
 .zuk_fable_class <- new.env(parent = emptyenv())
@@ -162,7 +162,7 @@ train_tsfm <- function(.data, specials, model_id, revision = NULL,
 #' @export
 #' @examplesIf requireNamespace("fabletools", quietly = TRUE) && requireNamespace("tsibble", quietly = TRUE)
 #' history <- tsibble::tsibble(time = 1:12, value = cumsum(1:12), index = time)
-#' fits <- fabletools::model(history, zukzeit = TSFM(value, model_id = "stub"))
+#' fits <- fabletools::model(history, zutsfm = TSFM(value, model_id = "stub"))
 #' fabletools::forecast(fits, h = 3)
 #' zuk_unload("stub")
 TSFM <- function(formula, model_id, revision = NULL, quantile_levels = NULL,
@@ -196,7 +196,7 @@ TSFM <- function(formula, model_id, revision = NULL, quantile_levels = NULL,
 #' @export
 #' @examplesIf requireNamespace("fabletools", quietly = TRUE) && requireNamespace("tsibble", quietly = TRUE)
 #' history <- tsibble::tsibble(time = 1:24, value = cumsum(1:24), index = time)
-#' fits <- fabletools::model(history, zukzeit = TSFM(value, model_id = "stub"))
+#' fits <- fabletools::model(history, zutsfm = TSFM(value, model_id = "stub"))
 #'
 #' # fabletools calls this method one key at a time; it returns the predictive
 #' # distributions it then assembles into a fable.

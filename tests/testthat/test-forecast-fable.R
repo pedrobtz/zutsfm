@@ -33,7 +33,7 @@ test_that("forecast() |> as_fable() |> accuracy() works on the stub", {
   fc <- forecast(model, tsb_train, h = 6, quantile_levels = c(0.1, 0.5, 0.9))
   expect_s3_class(fc, "zuk_forecast")
 
-  # Qualified: zukzeit registers a method on fabletools' generic rather than
+  # Qualified: zutsfm registers a method on fabletools' generic rather than
   # exporting a competing `as_fable()`.
   fbl <- fabletools::as_fable(fc)
   expect_true(inherits(fbl, "fbl_ts"))

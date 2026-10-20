@@ -33,10 +33,10 @@ the signature \verb{function(config, weights)} and return a \code{\link[=new_zuk
 Registration changes only the current R session's constructor mapping. It
 does not add a checkpoint to \code{\link[=zuk_models]{zuk_models()}} or make an arbitrary model ID
 loadable through \code{\link[=zuk_pretrained]{zuk_pretrained()}}. The loader consults this registry only
-after resolving a checkpoint from \code{zukzeit}'s package-owned curated catalogue.
+after resolving a checkpoint from \code{zutsfm}'s package-owned curated catalogue.
 Architecture authors can use \code{\link[=zuk_check_architecture]{zuk_check_architecture()}} independently;
 catalogue inclusion requires the checkpoint's metadata, immutable revision,
-licence, and numerical-parity evidence to be reviewed in \code{zukzeit}.
+licence, and numerical-parity evidence to be reviewed in \code{zutsfm}.
 }
 \examples{
 zuk_registry_has("timesfm")

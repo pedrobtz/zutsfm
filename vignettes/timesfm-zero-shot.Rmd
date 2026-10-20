@@ -11,7 +11,7 @@ vignette: >
 knitr::opts_chunk$set(collapse = TRUE, comment = "#>", eval = FALSE)
 ```
 
-TimesFM 2.5 is the first architecture `zukzeit` runs natively: the checkpoint is
+TimesFM 2.5 is the first architecture `zutsfm` runs natively: the checkpoint is
 loaded into R `torch`, and no Python runs at inference time. This vignette walks
 the whole public surface on one panel, from discovery to forecast.
 
@@ -26,7 +26,7 @@ file, so you can inspect what is available, how large it is, and what licence
 its weights carry before committing to a download:
 
 ```{r}
-library(zukzeit)
+library(zutsfm)
 
 zuk_models()
 #>                          model_id architecture     state max_context  n_params
@@ -64,7 +64,7 @@ zuk_capabilities(model)
 
 Capabilities are enforced *before* inference, so an unsupported request costs
 nothing. The `FALSE` fields are honest: contract v1 has no channel for
-covariates or multivariate targets, so `zukzeit` refuses rather than silently
+covariates or multivariate targets, so `zutsfm` refuses rather than silently
 ignoring them.
 
 `max_context` is the best case. TimesFM's 16,384 positions cover the context and
@@ -209,7 +209,7 @@ median(fabletools::forecast(fits, h = 14)$sales)
 library(parsnip)
 
 spec <- zuk_reg() |>
-  set_engine("zukzeit",
+  set_engine("zutsfm",
              model_id = "google/timesfm-2.5-200m-pytorch",
              device = "cpu", index = "date", id = "region")
 
